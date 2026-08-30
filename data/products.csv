@@ -1,0 +1,9 @@
+product_id,product_name,category,subcategory,brand,price,cost,supplier,updated_at
+P001,Wireless Mouse,Electronics,Computer Accessories,TechPro,799,500,ABC Electronics,20-08-2026 09:00
+P002,Mechanical Keyboard,Electronics,Computer Accessories,KeyMaster,2499,1700,ABC Electronics,20-08-2026 09:10
+P003,USB-C Hub,Electronics,Computer Accessories,ConnectX,1499,900,Global Gadgets,20-08-2026 09:20
+P004,Laptop Backpack,Accessories,Bags,UrbanCarry,1999,1100,FashionHub,20-08-2026 09:30
+P005,Running Shoes,Footwear,Sports Shoes,RunFast,3499,2200,SportsWorld,20-08-2026 09:40
+P006,Smart Watch,Electronics,Wearables,TimeTech,5999,3900,Global Gadgets,20-08-2026 09:50
+P007,Bluetooth Headphones,Electronics,Audio,SoundMax,2999,1800,SoundWorld,20-08-2026 10:00
+P008,Coffee Maker,Home,Kitchen Appliances,HomeBrew,4499,2900,HomeWorld,20-08-2026 10:10

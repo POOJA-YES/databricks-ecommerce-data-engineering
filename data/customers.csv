@@ -1,0 +1,11 @@
+customer_id,first_name,last_name,email,city,state,country,signup_date,customer_segment,updated_at
+C001,Aarav,Sharma,aarav.sharma@example.com,Bengaluru,KA,India,10-01-2025,Premium,20-08-2026 10:30
+C002,Priya,Patel,priya.patel@example.com,Mumbai,MH,India,15-02-2025,Regular,20-08-2026 11:10
+C003,Rahul,Verma,rahul.verma@example.com,Delhi,DL,India,05-03-2025,Premium,20-08-2026 12:00
+C004,Sneha,Rao,sneha.rao@example.com,Hyderabad,TS,India,12-04-2025,Regular,20-08-2026 13:15
+C005,Vikram,Singh,vikram.singh@example.com,Pune,MH,India,01-05-2025,Premium,20-08-2026 14:20
+C006,Ananya,Iyer,ananya.iyer@example.com,Chennai,TN,India,18-05-2025,Regular,21-08-2026 09:00
+C007,Karan,Mehta,karan.mehta@example.com,Ahmedabad,GJ,India,10-06-2025,Regular,21-08-2026 09:45
+C008,Neha,Kapoor,neha.kapoor@example.com,Kolkata,WB,India,22-07-2025,Premium,21-08-2026 10:15
+C009,Rohan,Gupta,rohan.gupta@example.com,Jaipur,RJ,India,03-08-2025,Regular,21-08-2026 11:30
+C010,Meera,Nair,meera.nair@example.com,Kochi,KL,India,14-09-2025,Premium,21-08-2026 12:10
