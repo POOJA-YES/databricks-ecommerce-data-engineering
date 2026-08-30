@@ -1,0 +1,157 @@
+resources:
+  jobs:
+    ecommerce_medallion_pipeline:
+      name: ecommerce-medallion-pipeline
+      tasks:
+        - task_key: 01_stream_web_events
+          notebook_task:
+            notebook_path: /Workspace/Users/aipooja.yes@gmail.com/databricks-ecommerce-data-engineering/notebooks/streaming/01_stream_web_events
+            source: WORKSPACE
+        - task_key: 02_streaming_analytics
+          depends_on:
+            - task_key: 01_stream_web_events
+          notebook_task:
+            notebook_path: /Workspace/Users/aipooja.yes@gmail.com/databricks-ecommerce-data-engineering/notebooks/streaming/02_streaming_analytics
+            source: WORKSPACE
+        - task_key: 01_bronze_customers
+          notebook_task:
+            notebook_path: /Workspace/Users/aipooja.yes@gmail.com/databricks-ecommerce-data-engineering/notebooks/bronze/01_bronze_customers
+            source: WORKSPACE
+        - task_key: 01_bronze_inventory
+          notebook_task:
+            notebook_path: /Workspace/Users/aipooja.yes@gmail.com/databricks-ecommerce-data-engineering/notebooks/bronze/06_bronze_inventory
+            source: WORKSPACE
+        - task_key: 01_bronze_order_items
+          notebook_task:
+            notebook_path: /Workspace/Users/aipooja.yes@gmail.com/databricks-ecommerce-data-engineering/notebooks/bronze/04_bronze_order_items
+            source: WORKSPACE
+        - task_key: 01_bronze_orders
+          notebook_task:
+            notebook_path: /Workspace/Users/aipooja.yes@gmail.com/databricks-ecommerce-data-engineering/notebooks/bronze/03_bronze_orders
+            source: WORKSPACE
+        - task_key: 01_bronze_payments
+          notebook_task:
+            notebook_path: /Workspace/Users/aipooja.yes@gmail.com/databricks-ecommerce-data-engineering/notebooks/bronze/05_bronze_payments
+            source: WORKSPACE
+        - task_key: 01_bronze_products
+          notebook_task:
+            notebook_path: /Workspace/Users/aipooja.yes@gmail.com/databricks-ecommerce-data-engineering/notebooks/bronze/02_bronze_products
+            source: WORKSPACE
+        - task_key: 02_silver_customers
+          depends_on:
+            - task_key: 01_bronze_customers
+          notebook_task:
+            notebook_path: /Workspace/Users/aipooja.yes@gmail.com/databricks-ecommerce-data-engineering/notebooks/silver/01_silver_customers
+            source: WORKSPACE
+        - task_key: 01_silver_scd2_customers
+          depends_on:
+            - task_key: 02_silver_customers
+          notebook_task:
+            notebook_path: /Workspace/Users/aipooja.yes@gmail.com/databricks-ecommerce-data-engineering/notebooks/silver/08_scd2_customers
+            source: WORKSPACE
+        - task_key: 01_silver_customer_scd2_update
+          depends_on:
+            - task_key: 01_silver_scd2_customers
+          notebook_task:
+            notebook_path: /Workspace/Users/aipooja.yes@gmail.com/databricks-ecommerce-data-engineering/notebooks/silver/09_scd2_customer_update
+            source: WORKSPACE
+        - task_key: 01_scd2_merge
+          depends_on:
+            - task_key: 01_silver_customer_scd2_update
+          notebook_task:
+            notebook_path: /Workspace/Users/aipooja.yes@gmail.com/databricks-ecommerce-data-engineering/notebooks/silver/10_scd2_customer_merge
+            source: WORKSPACE
+        - task_key: 02_silver_data_quality_orders
+          depends_on:
+            - task_key: 01_bronze_orders
+          notebook_task:
+            notebook_path: /Workspace/Users/aipooja.yes@gmail.com/databricks-ecommerce-data-engineering/notebooks/silver/07_data_quality_orders
+            source: WORKSPACE
+        - task_key: 02_silver_inventory
+          depends_on:
+            - task_key: 01_bronze_inventory
+          notebook_task:
+            notebook_path: /Workspace/Users/aipooja.yes@gmail.com/databricks-ecommerce-data-engineering/notebooks/silver/06_silver_inventory
+            source: WORKSPACE
+        - task_key: 02_silver_order_items
+          depends_on:
+            - task_key: 01_bronze_order_items
+          notebook_task:
+            notebook_path: /Workspace/Users/aipooja.yes@gmail.com/databricks-ecommerce-data-engineering/notebooks/silver/04_silver_order_items
+            source: WORKSPACE
+        - task_key: 02_silver_orders
+          depends_on:
+            - task_key: 01_bronze_orders
+          notebook_task:
+            notebook_path: /Workspace/Users/aipooja.yes@gmail.com/databricks-ecommerce-data-engineering/notebooks/silver/03_silver_orders
+            source: WORKSPACE
+        - task_key: 02_silver_data_quality_summary
+          depends_on:
+            - task_key: 02_silver_orders
+          notebook_task:
+            notebook_path: /Workspace/Users/aipooja.yes@gmail.com/databricks-ecommerce-data-engineering/notebooks/silver/11_data_quality_summary
+            source: WORKSPACE
+        - task_key: 02_silver_payments
+          depends_on:
+            - task_key: 01_bronze_payments
+          notebook_task:
+            notebook_path: /Workspace/Users/aipooja.yes@gmail.com/databricks-ecommerce-data-engineering/notebooks/silver/05_silver_payments
+            source: WORKSPACE
+        - task_key: 02_silver_products
+          depends_on:
+            - task_key: 01_bronze_products
+          notebook_task:
+            notebook_path: /Workspace/Users/aipooja.yes@gmail.com/databricks-ecommerce-data-engineering/notebooks/silver/02_silver_products
+            source: WORKSPACE
+        - task_key: 03_executive_dashboard
+          depends_on:
+            - task_key: 02_silver_orders
+          notebook_task:
+            notebook_path: /Workspace/Users/aipooja.yes@gmail.com/databricks-ecommerce-data-engineering/notebooks/gold/02_executive_dashboard
+            source: WORKSPACE
+        - task_key: 03_final_gold_tables
+          depends_on:
+            - task_key: 01_silver_scd2_customers
+            - task_key: 02_silver_orders
+            - task_key: 02_silver_products
+            - task_key: 02_silver_order_items
+          notebook_task:
+            notebook_path: /Workspace/Users/aipooja.yes@gmail.com/databricks-ecommerce-data-engineering/notebooks/gold/01_final_gold_tables
+            source: WORKSPACE
+        - task_key: 03_gold_customer_360
+          depends_on:
+            - task_key: 02_silver_customers
+            - task_key: 02_silver_orders
+          notebook_task:
+            notebook_path: /Workspace/Users/aipooja.yes@gmail.com/databricks-ecommerce-data-engineering/notebooks/gold/03_gold_customer_360
+            source: WORKSPACE
+        - task_key: 03_gold_daily_sales
+          depends_on:
+            - task_key: 02_silver_orders
+          notebook_task:
+            notebook_path: /Workspace/Users/aipooja.yes@gmail.com/databricks-ecommerce-data-engineering/notebooks/gold/01_gold_daily_sales
+            source: WORKSPACE
+        - task_key: 03_gold_inventory_kpi
+          depends_on:
+            - task_key: 02_silver_inventory
+            - task_key: 02_silver_products
+          notebook_task:
+            notebook_path: /Workspace/Users/aipooja.yes@gmail.com/databricks-ecommerce-data-engineering/notebooks/gold/04_gold_inventory_kpi
+            source: WORKSPACE
+        - task_key: 03_gold_product_sales
+          depends_on:
+            - task_key: 02_silver_orders
+            - task_key: 02_silver_order_items
+            - task_key: 02_silver_products
+          notebook_task:
+            notebook_path: /Workspace/Users/aipooja.yes@gmail.com/databricks-ecommerce-data-engineering/notebooks/gold/02_gold_product_sales
+            source: WORKSPACE
+        - task_key: 03_gold_category_sales
+          depends_on:
+            - task_key: 03_gold_product_sales
+          notebook_task:
+            notebook_path: /Workspace/Users/aipooja.yes@gmail.com/databricks-ecommerce-data-engineering/notebooks/gold/05_gold_category_sales
+            source: WORKSPACE
+      queue:
+        enabled: true
+      performance_target: PERFORMANCE_OPTIMIZED
