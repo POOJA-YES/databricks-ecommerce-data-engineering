@@ -1,5 +1,2 @@
-# Include all .ipynb notebooks in the repo
+notebooks/bronze/*.ipynb
 *.ipynb
-
-# OR include specific notebooks by path:
-notebooks/01_bronze_customers.ipynb
