@@ -23,4 +23,4 @@ jobs:
 
       - name: Validate project configuration
         run: |
-          python -c "import yaml; f=open('resources/medallion_pipeline.yml'); config=yaml.safe_load(f); assert 'resources' in config and 'jobs' in config['resources']; print('Pipeline YAML is valid')"
+          python -c "import yaml; f=open('resources/ecommerce_medallion_pipeline.yml'); config=yaml.safe_load(f); assert 'resources' in config and 'jobs' in config['resources']; print('Pipeline YAML is valid')"
