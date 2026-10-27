@@ -1,0 +1,26 @@
+
+name: Ecommerce Project CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate-project:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get repository code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install YAML checker
+        run: pip install pyyaml
+
+      - name: Validate project configuration
+        run: |
+          python -c "import yaml; f=open('resources/medallion_pipeline.yml'); config=yaml.safe_load(f); assert 'resources' in config and 'jobs' in config['resources']; print('Pipeline YAML is valid')"
