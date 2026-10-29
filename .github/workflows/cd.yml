@@ -17,9 +17,7 @@ jobs:
 
     env:
       DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
-      DATABRICKS_CLIENT_ID: ${{ secrets.DATABRICKS_CLIENT_ID }}
-      DATABRICKS_CLIENT_SECRET: ${{ secrets.DATABRICKS_CLIENT_SECRET }}
-      DATABRICKS_AUTH_TYPE: oauth-m2m
+      DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
 
     steps:
       - name: Checkout repository
@@ -27,9 +25,6 @@ jobs:
 
       - name: Install Databricks CLI
         uses: databricks/setup-cli@main
-
-      - name: Debug auth
-        run: databricks current-user me
 
       - name: Validate bundle
         run: databricks bundle validate -t dev
