@@ -2,6 +2,9 @@
 bundle:
   name: ecommerce_data_engineering
 
+include:
+  - resources/*.yml
+
 sync:
   include:
     - notebooks/**
