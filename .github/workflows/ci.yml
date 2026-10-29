@@ -25,5 +25,5 @@ jobs:
         run: |
           python -c "import yaml; f=open('resources/ecommerce_medallion_pipeline.yml'); config=yaml.safe_load(f); assert 'resources' in config and 'jobs' in config['resources']; print('Pipeline YAML is valid')"
      
-      - name: Run data quality tests
+      - name: Run data quality tests from test folder
         run: python -m unittest discover -s tests -v
