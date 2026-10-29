@@ -11,4 +11,4 @@ targets:
     mode: development
     default: true
     workspace:
-      host: https://dbc-aec26322-4103.cloud.databricks.com/browse/folders/3342668017454430?o=7474652564415958
+      host: https://dbc-aec26322-4103.cloud.databricks.com
